@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guessing Game Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href='css/my-styles.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="jquery.js"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sweetalert.min.js"></script>
+  </head>
+  <body>
+      <div>
+        <h1 class='jumbotron'>Do you want to play a game?</h1>
+          <div class='form'>
+              <form>
+                  <h3>Enter your guess.</h3><br><br>
+                  <input id="guess" type='text' placeholder='A number 1-100'>
+                  <input class='btn btn-primary' type='submit' value='Submit'>
+                  <br><br>
+                  <button class='btn-danger' type='button'>Play again?</button>
+                  <button class='btn-success' type='button'>I give up!</button><br><br>
+                  <h2 class="bro" id="scalding">You are <strong style="color: orangered">scalding hot</strong> bro.</h2>
+                  <h2 class="bro" id="hot">You are getting <strong style="color: darkorange">hotter</strong> bro.</h2>
+                  <h2 class="bro" id="warm">You are getting <strong style="color: gold">warmer</strong> bro.</h2>
+                  <h2 class="bro" id="cold">You are <strong style="color: dodgerblue">cold</strong> bro.</h2>
+                  <h2 class="bro" id="freezing">Wow. You are <strong style="color: deepskyblue">freezing</strong> bro.</h2>
+                  <h2 class="bro" id="higher">Try higher.</h2>
+                  <h2 class="bro" id="lower">Try lower.</h2>
+                  <h4>You have 5 chances. You may begin.</h2>
+              </form>
+              <table>
+                <tr class="next">
+                  <th>Previous Guesses</th>
+                  <th>Temperature</th>
+                </tr>
+              </table>
+          </div>
+      </div>
+  </body>
+</html>
