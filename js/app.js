@@ -78,24 +78,26 @@ $(document).ready(function(){
 
   function submitEvent(event){
     event.preventDefault();
-    $("h1").text("Good luck.");
-    $("h3").text("Enter your guess.");
-    previousGuess.push(userGuess);
-    userGuess = $("#guess").val();
-    guess();
-    isGuessValid();
-    hotOrCold();
-    if(win){
-      $("h1").text("Way to go.");
-      $("h3").text("You've won.");
-      $("h4").text("Now LEAVE.");
-      $(".bro").hide();
+    if(guessesRemaining > -1 && !win){
+      $("h1").text("Good luck.");
+      $("h3").text("Enter your guess.");
+      previousGuess.push(userGuess);
+      userGuess = $("#guess").val();
+      guess();
+      isGuessValid();
+      hotOrCold();
+      if(win){
+        $("h1").text("Way to go.");
+        $("h3").text("You've won.");
+        $("h4").text("Now LEAVE.");
+        $(".bro").hide();
+      }
+      if(validGuess && !win){
+        gameOver();
+        guessesRemaining--;
+      }
+      validGuess = true;
     }
-    if(validGuess && !win){
-      gameOver();
-      guessesRemaining--;
-    }
-    validGuess = true;
   }
 
   function resetEvent(event){
@@ -152,9 +154,9 @@ $(document).ready(function(){
     function(isConfirm){
       if (isConfirm){
         swal("As you wish. The answer was " + numberToGuess + ".", "You remind me of my sister...", "success");
-        $("h1").text("GAME OVER!");
-        $("h3").text("You suck.");
-        $("h4").text("Please leave.");
+        guessesRemaining = -1;
+        gameOver();
+        $(".bro").hide();
       }
       else{
         swal("Cancelled", "Good choice. Keep trying. :)", "error");
