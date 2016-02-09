@@ -34,7 +34,7 @@ $(document).ready(function(){
       $("h4").text("Please leave.");
     }
     else{
-      $("h4").text(guessesRemaining + " chances left! " + numberToGuess);
+      $("h4").text(guessesRemaining + " chances left!");
     }
   }
 
@@ -139,7 +139,7 @@ $(document).ready(function(){
             $(".jumbotron").hide().show("slow");
             $("h1").text("Game was restarted.");
             $("h4").text("You have 5 chances again. You may begin.");
-            $(".bro").hide();
+          $(".bro").hide();
             $("table").hide();
             $("td").remove();
           }
