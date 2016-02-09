@@ -3,6 +3,7 @@ $(document).ready(function(){
     if(parseInt($("#guess").val()) === numberToGuess){
       win = true;
         swal("Good job!", "You guessed right!", "success");
+        disableButtons();
     };
     difference = (userGuess - numberToGuess);
     absoluteDifference = Math.abs(difference);
@@ -11,9 +12,16 @@ $(document).ready(function(){
     $(".bro").hide(); //Hides hint after showing
   };
 
+  function disableButtons(){
+    $("#guess").attr("disabled", true);
+    $(".btn-primary").attr("disabled", true);
+    $(".btn-danger").attr("disabled", true);
+    $(".btn-success").attr("disabled", true);
+  }
+
   function guessEvent(){
     //Show hint if number selection is invalid
-    if($(this).val() > 100 || $(this).val() < 0){
+  if($(this).val() > 100 || $(this).val() < 0){
       swal("Error!", "Please enter a number from 1-100.", "error");
       $("#guess").val("");
     }
@@ -26,13 +34,16 @@ $(document).ready(function(){
       $("h4").text("Please leave.");
     }
     else{
-      $("h4").text(guessesRemaining + " chances left!");
+      $("h4").text(guessesRemaining + " chances left! " + numberToGuess);
     }
   }
 
   function hotOrCold(){
     if(validGuess && guessesRemaining > 0){
-      if(absoluteDifference <= 5){
+      if(absoluteDifference === 0){
+        temperature = "Perfect";
+      }
+      else if(absoluteDifference <= 5){
         $("#scalding").show();
         temperature = "Scalding";
       }
@@ -72,7 +83,7 @@ $(document).ready(function(){
       }
     }
     if(!validGuess && guessesRemaining > 0){
-      $("h4").text("You already guessed " + userGuess + " bro...");
+      swal("Oops!", "You've already entered that number!", "warning");
     }
   }
 
@@ -157,6 +168,7 @@ $(document).ready(function(){
         guessesRemaining = -1;
         gameOver();
         $(".bro").hide();
+        disableButtons();
       }
       else{
         swal("Cancelled", "Good choice. Keep trying. :)", "error");
