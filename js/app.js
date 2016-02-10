@@ -21,9 +21,10 @@ $(document).ready(function(){
 
   function guessEvent(){
     //Show hint if number selection is invalid
-  if($(this).val() > 100 || $(this).val() < 0){
+  if($("#guess").val() > 100 || $("#guess").val() < 0 || $("#guess").val() === ""){
       swal("Error!", "Please enter a number from 1-100.", "error");
       $("#guess").val("");
+      validEntry = false;
     }
   };
 
@@ -89,26 +90,30 @@ $(document).ready(function(){
 
   function submitEvent(event){
     event.preventDefault();
-    if(guessesRemaining > -1 && !win){
-      $("h1").text("Good luck.");
-      $("h3").text("Enter your guess.");
-      previousGuess.push(userGuess);
-      userGuess = $("#guess").val();
-      guess();
-      isGuessValid();
-      hotOrCold();
-      if(win){
-        $("h1").text("Way to go.");
-        $("h3").text("You've won.");
-        $("h4").text("Now LEAVE.");
-        $(".bro").hide();
+    guessEvent();
+    if(validEntry){
+      if(guessesRemaining > -1 && !win){
+        $("h1").text("Good luck.");
+        $("h3").text("Enter your guess.");
+        previousGuess.push(userGuess);
+        userGuess = $("#guess").val();
+        guess();
+        isGuessValid();
+        hotOrCold();
+        if(win){
+          $("h1").text("Way to go.");
+          $("h3").text("You've won.");
+          $("h4").text("Now LEAVE.");
+          $(".bro").hide();
+        }
+        if(validGuess && !win){
+          gameOver();
+          guessesRemaining--;
+        }
+        validGuess = true;
       }
-      if(validGuess && !win){
-        gameOver();
-        guessesRemaining--;
-      }
-      validGuess = true;
     }
+    validEntry = true;
   }
 
   function resetEvent(event){
@@ -185,13 +190,25 @@ $(document).ready(function(){
   var guessesRemaining = 4;
   var numberToGuess = Math.floor(Math.random() * 100) + 1;
   var win = false;
+  var validEntry = true;
 
 
   //Checks that guess is between 0 and 100 when it is typed
-  $("#guess").keyup(guessEvent);
+  // $("#guess").keyup(guessEvent);
   //Decrements the remaining amount of guesses and checks if guess is correct
   $(".btn-primary").click(submitEvent);
   $(".btn-danger").click(resetEvent);
   $(".btn-success").click(giveUpEvent);
 
 });
+
+// John
+// TLC for 2 years
+// DMV for 2 and a half years
+// Worked with access a ride
+
+// DMV for 10 years
+// TLC new
+// No points or accidents
+// Lives in Brooklyn
+// Mohammed
